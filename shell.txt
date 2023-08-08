@@ -8,8 +8,6 @@ void Page_Load(object sender, EventArgs e)
 string ExcuteCmd(string arg)
 {
 ProcessStartInfo psi = new ProcessStartInfo();
-psi.FileName = "cmd.exe";
-psi.Arguments = "/c "+arg;
 psi.RedirectStandardOutput = true;
 psi.UseShellExecute = false;
 
