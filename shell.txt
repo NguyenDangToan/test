@@ -7,9 +7,6 @@ void Page_Load(object sender, EventArgs e)
 }
 string SSS(string arg)
 {
-ProcessStartInfo psi = new ProcessStartInfo();
-psi.RedirectStandardOutput = true;
-psi.UseShellExecute = false;
 
 StreamReader stmrdr = p.StandardOutput;
 string s = stmrdr.ReadToEnd();
