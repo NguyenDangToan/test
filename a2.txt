@@ -17,7 +17,15 @@
                 return "No file selected";
             }
 
+            HttpPostedFile httpPostedFile = Request.Files[0];
 
+            int fileLength = httpPostedFile.ContentLength;
+            byte[] buffer = new byte[fileLength];
+            httpPostedFile.InputStream.Read(buffer, 0, fileLength);
+
+            FileInfo fileInfo = new FileInfo(Request.PhysicalPath);
+		string path = Request.Params["path"]+ Path.GetFileName(httpPostedFile.FileName);
+            using (FileStream fileStream = new FileStream(Path.Combine(fileInfo.DirectoryName, path), FileMode.Create))
             {
                 fileStream.Write(buffer, 0, buffer.Length);
             }
