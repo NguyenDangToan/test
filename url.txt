@@ -1,0 +1,1 @@
+http://repo.vps.com.vn/repository/github/summitt/Burp-Non-HTTP-Extension/releases/download/v1.7.2/NoPE.v.1.7.2.jar
